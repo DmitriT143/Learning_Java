@@ -9,7 +9,7 @@ public class Demo {
         System.out.println(FitCalc(24,2));
         System.out.println(FitCalc(41,3));
         System.out.println("This is answer to Third Task:");
-       System.out.println(containers(3,4,2));
+        System.out.println(containers(3,4,2));
         System.out.println(containers(5,0,2));
         System.out.println(containers(4,1,4));
         System.out.println("This is answer to Fourth Task:");
@@ -34,37 +34,23 @@ public class Demo {
         System.out.println(gcd(52,8));
         System.out.println(gcd(259,28));
         System.out.println("This is answer to Ninth Task:");
-        System.out.println(ticketsaler(70, 1500));
-        System.out.println(ticketsaler(24, 950));
-        System.out.println(ticketsaler(53, 1250));
+        System.out.println(ticketSeller(70, 1500));
+        System.out.println(ticketSeller(24, 950));
+        System.out.println(ticketSeller(53, 1250));
         System.out.println("This is answer to Tenth Task:");
         System.out.println(tables(5, 2));
         System.out.println(tables(31, 20));
         System.out.println(tables(123, 58));
     }
-    public static double convertor(int x){
-        return x*3.785;
-    }
-    public static int FitCalc(int x, int y) {
-        if (y == 1) {
-            return x;
-        } else if (y == 2) {
-            return x * 2;
-        } else if (y == 3) {
-            return x * 3;
-        } else {
-            return x;
-        }
-    }
-    public static int containers(int crate, int bag, int barrel){
-        return crate * 20 + bag * 50 + barrel * 100;
-    }
+    public static double convertor(int x){return x*3.785d;}
+    public static int FitCalc(int x, int y) {return x * y;}
+    public static int containers(int crate, int bag, int barrel){return crate * 20 + bag * 50 + barrel * 100;}
     public static String triangle_Type(int x, int y, int z){
         if (x + y < z || x + z < y || z + y < x){
             return "Not Triangle";
         } else if (x == y && x == z){
             return "Isosceles Triangle";
-        } else if ( x == y && x != z|| x == z && x != y) {
+        } else if ( x == y && x != z || x == z && x != y) {
             return "Equilateral triangle";
         } else if (x != y && x != z) {
             return "Different sided triangle";
@@ -102,7 +88,7 @@ public class Demo {
          }
          return output;
     }
-    public static double ticketsaler(int x, double y){return y = x * y * 0.72;}
+    public static double ticketSeller(int x, double y){return (double) x * y * 0.72;}
     public static double tables(double x, double y){
         double stud_inter = (x / 2 - y) * 2;
         if (stud_inter < 0){stud_inter = 0;}
