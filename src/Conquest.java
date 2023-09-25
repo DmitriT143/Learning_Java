@@ -18,16 +18,18 @@ public class Conquest {
         System.out.println(Arrays.toString(indexMultiplier(new int[]{3, 3, -2, 408, 3, 31})));
         System.out.println(inReverse("Hello World!"));
         System.out.println(inReverse("The quick brown fox."));
-        System.out.println(FibonacciForPoor(7));
-        System.out.println(FibonacciForPoor(11));
+        System.out.println(Tribonachi(7));
+        System.out.println(Tribonachi(11));
         System.out.println(PseudoHash(5));
         System.out.println(PseudoHash(10));
         System.out.println(PseudoHash(0));
-        System.out.println(HelpFinder("Hello, i'm under de water, Help me!"));
-        System.out.println(HelpFinder("Hello, I'd like to order um... Cream latte"));
+        System.out.println(HelpFinder("Hello i'm under de water Help me"));
+        System.out.println(HelpFinder("Hello I'd like to order Cream latte which helps me to relax"));
+        System.out.println(HelpFinder("Help"));
         System.out.println(isAnagram("listen","silent"));
         System.out.println(isAnagram("twelve plus one","eleven plus two"));
         System.out.println(isAnagram("hello","world"));
+        System.out.println(isAnagram("onety","eleven"));
     }
 
     public static String duplicatedLetters(String x){
@@ -93,13 +95,13 @@ public class Conquest {
         }
         return String.join("", reversed);
     }
-    public static int FibonacciForPoor(int x){
+    public static int Tribonachi(int x){
         int j = 0; int a = 0; int b = 0; int c = 1; int timer = x;
         if (x == 0|| x== 1|| x==2){return 0;} else if (x == 3) {return 1;} else {
             for (int i = 3; i < timer;) {
                 if (j == 0){ j = 1; a = a+b+c; x = a;}
                 else if (j == 1){j = 2; b = a+b+c; x = b;}
-                else if (j == 2){ j = 0; c = a+b+c; x = c;}
+                else { j = 0; c = a+b+c; x = c;}
                 i++;
             }
         }
@@ -117,12 +119,19 @@ public class Conquest {
         return String.join("",pseudo_hash);
     }
     public static String HelpFinder(String input){
+        input = input + " ";
         String[] forSearch = input.toLowerCase().split("");
         for (int i = 0; i < input.length()-4;) {
             if(forSearch[i].equals("h")){
-                if(forSearch[i+1].equals("e")){
-                    if(forSearch[i+2].equals("l")){
-                        if(forSearch[i+3].equals("p")){return "Calling for help";}
+                if(i-1 < 0 || forSearch[i-1].equals(" ") || forSearch[i-1].isEmpty()){
+                    if(forSearch[i+1].equals("e")){
+                        if(forSearch[i+2].equals("l")) {
+                            if (forSearch[i + 3].equals("p")) {
+                                if (forSearch[i + 4].equals(" ")) {
+                                    return "Calling for help";
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -133,7 +142,6 @@ public class Conquest {
     public static String isAnagram(String original, String failure){
         String[] forDemolition = failure.toLowerCase().replace(" ","").split("");
         String[] forCheck = original.toLowerCase().replace(" ","").split("");
-        if(forDemolition.length != forCheck.length){return "false, wrong size";}
         for (int i = 0; i < forCheck.length;) {
             for (int j = 0; j <forDemolition.length;) {
                 if(forCheck[i].equals(forDemolition[j])){forDemolition[j]="";}
