@@ -1,27 +1,19 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-
 public class LabPrimeNumber {
     public static void main(String[] args){
         for (int i = 0; i < args.length; i++) {
             int s = Integer.parseInt(args[i]);
-            System.out.println(isPrime(s));
-        }
-        System.out.println(Primes(100));
-    }
+            System.out.println(isPrime(s));}
+        System.out.println(Primes(100));}
     public static String Primes(int length){
         ArrayList<Integer> count = new ArrayList<>();
         count.add(1);
         boolean isPrime;
         for(int i = 2; i < length;){
             isPrime = true;
-            for (int j = 1; j < count.size(); j++)
-                {
-                    if (i % count.get(j) == 0){isPrime = false;}
-                }
+            for (int j = 1; j < count.size(); j++) {if (i % count.get(j) == 0){isPrime = false;}}
             if (isPrime){ count.add(i);}
-            i++;
-        }
+            i++;}
         return count.toString();
     }
     public static Boolean isPrime(int n){
