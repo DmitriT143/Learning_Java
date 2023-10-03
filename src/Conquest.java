@@ -119,23 +119,9 @@ public class Conquest {
         return String.join("",pseudo_hash);
     }
     public static String HelpFinder(String input){
-        input = input + " ";
-        String[] forSearch = input.toLowerCase().split("");
-        for (int i = 0; i < input.length()-4;) {
-            if(forSearch[i].equals("h")){
-                if(i-1 < 0 || forSearch[i-1].equals(" ") || forSearch[i-1].isEmpty()){
-                    if(forSearch[i+1].equals("e")){
-                        if(forSearch[i+2].equals("l")) {
-                            if (forSearch[i + 3].equals("p")) {
-                                if (forSearch[i + 4].equals(" ")) {
-                                    return "Calling for help";
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            i++;
+        String[] forSearch = input.toLowerCase().split(" ");
+        for (int i = 0; i < forSearch.length; i++) {
+            if (forSearch[i].equals("help")) {return "Help is on the way";}
         }
         return "Keep waiting";
     }
