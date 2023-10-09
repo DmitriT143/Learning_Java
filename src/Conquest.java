@@ -125,17 +125,11 @@ public class Conquest {
         }
         return "Keep waiting";
     }
-    public static String isAnagram(String original, String failure){
-        String[] forDemolition = failure.toLowerCase().replace(" ","").split("");
-        String[] forCheck = original.toLowerCase().replace(" ","").split("");
-        for (int i = 0; i < forCheck.length;) {
-            for (int j = 0; j <forDemolition.length;) {
-                if(forCheck[i].equals(forDemolition[j])){forDemolition[j]="";}
-                j++;
-            }
-            i++;
-        }
-        if(String.join("", forDemolition).isEmpty()){return "true";}
-        return "false";
+    public static boolean isAnagram(String input1, String input2){
+        char[] word1 = input1.toLowerCase().toCharArray();
+        char[] word2 = input2.toLowerCase().toCharArray();
+        Arrays.sort(word1);
+        Arrays.sort(word2);
+        return Arrays.equals(word1, word2);
     }
 }

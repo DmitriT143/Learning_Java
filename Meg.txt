@@ -1,2 +1,15 @@
-I am annoying piece of text MUEHUY
-Hey look i am sassy problem DO YOU WANT ME TO DELETE YOU?
+It is a checklist actually
+
+practice tasks:
+#Done tasks 1-10
+#Done tasks 11-20 (fix needed)
+#ToDo defend tasks 21-30 (MEGAlight)
+#ToDo tasks 31-40 (3 weeks 10 tasks)
+#Inkoming tasks 41-50 (3 weeks 10 tasks)
+#Inkoming tasks 51-60 (3 weeks 10 tasks)
+
+lab tasks
+# Done: lab0 task GIT
+# Done: lab1 task PrimeNumber
+# Done: lab1 Palindrome
+# ToDo: lab2 Appliances (class -> subclass -> call functions)

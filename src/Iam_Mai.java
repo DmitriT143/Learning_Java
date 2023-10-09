@@ -12,6 +12,7 @@ public class Iam_Mai {
         System.out.println(binarySystem(2));
         System.out.println(binarySystem(3));
         System.out.println(binarySystem(4));
+        System.out.println(alphabeticOrder("abcdjuwx"));
         System.out.println();
     }
     public static String nonRepeatable(String sentence){
@@ -64,6 +65,18 @@ public class Iam_Mai {
         return String.join(",",binaryPrevious);
     }
     public static String alphabeticOrder (String input){
-        return input;
+        String[] alphabet = "abcedfghijklmnopqrstuvwxyz".split("");
+        ArrayList<Character> biggestRow;
+        String[] inRow = input.toLowerCase().replace(" ","").split("");
+        for (int i = 0; i < inRow.length; i++) {
+            for (int j = 0; j < alphabet.length; j++) {
+                if (inRow[i].equals(alphabet[j])){
+                    if (inRow[i+1].equals(alphabet[i+1])){boolean rowGoesUp = true; break;}
+                    else if (inRow[i+1].equals(alphabet[i-1])){boolean rowGoesUp = false; break;}
+                    else {break;}
+                }
+            }
+        }
+        return String.join("",inRow);
     }
 }
