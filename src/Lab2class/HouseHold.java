@@ -21,6 +21,7 @@ public abstract class HouseHold {
 
 
     public static void main(String[] args){
+        Fridge Dno = new Fridge();
         DishWasher Rita = new DishWasher("Hard West",10,true,50,false,"Bosch");
         DishWasher Magda = new DishWasher();
         DishWasher Senna = new DishWasher();

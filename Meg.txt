@@ -12,4 +12,5 @@ lab tasks
 # Done: lab0 task GIT
 # Done: lab1 task PrimeNumber
 # Done: lab1 Palindrome
-# ToDo: Defend lab2 Household (class -> subclass -> call functions)
+# Done: lab2 Household (class -> subclass -> call functions)
+#ToDo: lab 3
