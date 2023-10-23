@@ -16,6 +16,8 @@ public class Iam_Mai {
         System.out.println(binarySystem(4));
         System.out.println(alphabeticOrder("abcdjuwx"));
         System.out.println(alphabeticOrder("klmabzyxw"));
+        System.out.println(duplicateToNum("aaabbcdd"));
+        System.out.println(duplicateToNum("vvvvaajaaaaa"));
         System.out.println();
     }
 
@@ -86,7 +88,7 @@ public class Iam_Mai {
     }
 //Todo: Fix this BS with alphabetic order till next mon.
     public static String alphabeticOrder(String input) {
-        String[] alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+        String[] alphabet = "abcdefghijklmnopqrstuvwxyz ".split("");
         String[] inRow = input.toLowerCase().replace(" ", "").split("");
         ArrayList<String> currentRow = new ArrayList<String>();
         String[] biggestRow = new String[]{"a"};
@@ -120,10 +122,23 @@ public class Iam_Mai {
         return String.join("", biggestRow);
     }
     public static String duplicateToNum(String origin){
-        String[][] Symbols_matrix;
-        for (int i = 0; i < origin.length(); i++) {
-            
+        int mat_len = 1;
+        String[] splitTed = origin.split("");
+        for (int i = 0; i < origin.length()-1; i++) {
+            if(!splitTed[i].equals(splitTed[i+1])){mat_len++;}
         }
+        String[][] Symbols_matrix = new String[mat_len][1];
+        for (int i = 0; i < mat_len; i++) {
+            Symbols_matrix[i][0] = "";
+        }
+        for (int i = 0, j = 0; i < origin.length(); i++)
+        {
+            if(i == origin.length()-1){Symbols_matrix[j][0] = Symbols_matrix[j][0] + splitTed[i]; break;}
+            if (splitTed[i].equals(splitTed[i+1])){
+                Symbols_matrix[j][0] = Symbols_matrix[j][0] + splitTed[i];
+            } else {Symbols_matrix[j][0] = Symbols_matrix[j][0] + splitTed[i];j++;}
+        }
+        origin = Arrays.deepToString(Symbols_matrix);
     return origin;
     }
 }
