@@ -16,7 +16,9 @@ public class HashTableImprove<K,V> {
     }
     public int size(){ return this.size;}
     public boolean isEmpty(){return size==0;}
-
+    public boolean isEmpty(K key){
+        return get(key) == null;
+    }
     private final int hashPosition (K key){return Objects.hashCode(key);}
 
     private int getBucketIndex(K key){

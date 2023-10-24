@@ -122,7 +122,7 @@ public class Iam_Mai {
         return String.join("", biggestRow);
     }
     public static String duplicateToNum(String origin){
-        int mat_len = 1;
+        int mat_len = 1; String output = "";
         String[] splitTed = origin.split("");
         for (int i = 0; i < origin.length()-1; i++) {
             if(!splitTed[i].equals(splitTed[i+1])){mat_len++;}
@@ -137,6 +137,9 @@ public class Iam_Mai {
             if (splitTed[i].equals(splitTed[i+1])){
                 Symbols_matrix[j][0] = Symbols_matrix[j][0] + splitTed[i];
             } else {Symbols_matrix[j][0] = Symbols_matrix[j][0] + splitTed[i];j++;}
+        }
+        for (int i = 0; i < mat_len; i++){
+            output = output + Symbols_matrix[i][0].split("")[0] + Symbols_matrix[i][0].split("").length;
         }
         origin = Arrays.deepToString(Symbols_matrix);
     return origin;

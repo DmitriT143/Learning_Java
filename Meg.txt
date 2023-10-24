@@ -13,4 +13,5 @@ lab tasks
 # Done: lab1 task PrimeNumber
 # Done: lab1 Palindrome
 # Done: lab2 Household (class -> subclass -> call functions)
-#ToDo: lab 3
+# Done: lab 3
+#ToDo: lab 4
