@@ -20,13 +20,17 @@ public class HashTableImprove<K,V> {
         return get(key) == null;
     }
     private final int hashPosition (K key){return Objects.hashCode(key);}
-
     private int getBucketIndex(K key){
         int hashPosition = hashPosition(key);
         int pos = hashPosition % numBucket;
         pos = pos < 0 ? pos * (-1): pos;
         return pos;
     }
+
+    public int getNumBucket() {
+        return numBucket;
+    }
+
     public V remove(K key){
         int bucketIndex = getBucketIndex(key);
         int hashPosition = hashPosition(key);
@@ -72,20 +76,5 @@ public class HashTableImprove<K,V> {
         hashPosition<K,V> newNode = new hashPosition<K, V>(key, value, hashCode);
         newNode.next = head;
         bucketArray.set(bucketIndex,newNode);
-        if((1.0 * size)/ numBucket >= 0.7){
-            ArrayList<hashPosition<K,V> > temp = bucketArray;
-            bucketArray = new ArrayList<>();
-            numBucket = 2 * numBucket;
-            size = 0;
-            for (int i = 0; i < numBucket; i++) {
-                bucketArray.add(null);
-            }
-            for (hashPosition<K,V> headNode : temp){
-                while (headNode != null){
-                    add(headNode.Key, headNode.Value);
-                    headNode = headNode.next;
-                }
-            }
-        }
     }
 }

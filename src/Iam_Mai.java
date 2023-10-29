@@ -144,4 +144,11 @@ public class Iam_Mai {
         origin = Arrays.deepToString(Symbols_matrix);
     return origin;
     }
+    public static int numberConverter(String input){
+        String[] stringNumbers = input.split(" ");
+        int finResult = 0; int interResult;
+        String[] firstNum = new String[]{"zero","one","two","three","four","five","six","seven","eight","nine"};
+        String[] smallNum = new String[]{"", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+        return 0;
+    }
 }
