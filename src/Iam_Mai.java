@@ -18,6 +18,9 @@ public class Iam_Mai {
         System.out.println(alphabeticOrder("klmabzyxw"));
         System.out.println(duplicateToNum("aaabbcdd"));
         System.out.println(duplicateToNum("vvvvaajaaaaa"));
+        System.out.println(numberConverter("five hundred sixty seven"));
+        System.out.println(numberConverter("thirty one"));
+        System.out.println(numberConverter("hundred one"));
         System.out.println();
     }
 
@@ -145,10 +148,42 @@ public class Iam_Mai {
     return origin;
     }
     public static int numberConverter(String input){
-        String[] stringNumbers = input.split(" ");
-        int finResult = 0; int interResult;
+        String[] stringNumbers = input.toLowerCase().split(" ");
+        int finResult = 0;
         String[] firstNum = new String[]{"zero","one","two","three","four","five","six","seven","eight","nine"};
-        String[] smallNum = new String[]{"", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
-        return 0;
+        String[] smallNum = new String[]{"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+        String[] midNum = new String[]{"twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
+        for (int i = 0; i < stringNumbers.length; i++) {
+            if(stringNumbers[stringNumbers.length-i-1].equals("hundred")){
+                i++;
+                if(Arrays.stream(firstNum).toList().contains(stringNumbers[stringNumbers.length-i-1]))
+                {
+                    for (int j = 0; j < firstNum.length; j++) {
+                        if(stringNumbers[stringNumbers.length-i-1].equals(firstNum[j]))
+                            finResult = finResult + (j)*100;}
+                }
+            }
+            else if(Arrays.stream(firstNum).toList().contains(stringNumbers[stringNumbers.length-i-1]))
+            {
+                for (int j = 0; j < firstNum.length; j++) {
+                    if(stringNumbers[stringNumbers.length-i-1].equals(firstNum[j]))
+                        finResult = finResult + (j);}
+            }
+            else if(Arrays.stream(smallNum).toList().contains(stringNumbers[stringNumbers.length-i-1]))
+            {
+                for (int j = 0; j < smallNum.length; j++) {
+                    if(stringNumbers[stringNumbers.length-i-1].equals(smallNum[j]))
+                        finResult = finResult + (j+9);
+                }
+            }
+            else if(Arrays.stream(midNum).toList().contains(stringNumbers[stringNumbers.length-i-1]))
+            {
+                for (int j = 0; j < midNum.length; j++) {
+                    if(stringNumbers[stringNumbers.length-i-1].equals(midNum[j]))
+                        finResult = finResult + (j+2)*10;
+                }
+            }
+        }
+        return finResult;
     }
 }
