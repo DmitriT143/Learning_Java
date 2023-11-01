@@ -20,8 +20,19 @@ public class Iam_Mai {
         System.out.println(duplicateToNum("vvvvaajaaaaa"));
         System.out.println(numberConverter("five hundred sixty seven"));
         System.out.println(numberConverter("thirty one"));
-        System.out.println(numberConverter("hundred one"));
-        System.out.println();
+        System.out.println(numberConverter("one hundred one"));
+        System.out.println(maxUniqueRow("123412324"));
+        System.out.println(maxUniqueRow("111111"));
+        System.out.println(maxUniqueRow("778978898"));
+        System.out.println(maxUniqueRow("1234115678"));
+        System.out.println(shortCut(new Integer[][]{{1,3,1},{1,5,1},{4,2,1}}));
+        System.out.println(shortCut(new Integer[][]{{2,7,3},{1,4,8},{4,5,9}}));
+        System.out.println(numericOrder("nin3th an1swer tas4k t2o"));
+        System.out.println(numericOrder("t3o the5m 1One all6 r4ule ri2ng"));
+        System.out.println(numericOrder("re6sponsibility Wit1h gr5eat power3 4comes g2reat"));
+        System.out.println(switchToHighest(159,723));
+        System.out.println(switchToHighest(491,3912));
+        System.out.println(switchToHighest(6274,71259));
     }
 
     public static String nonRepeatable(String s) {
@@ -185,5 +196,99 @@ public class Iam_Mai {
             }
         }
         return finResult;
+    }
+    public static String maxUniqueRow(String row){
+        char[] chRow = ("" + row).toCharArray();
+        String largest = ""; String current = "";
+        for (int i = 0; i < chRow.length; i++) {
+            if (i == chRow.length-1){
+                current = current + chRow[i];
+                if (current.length() > largest.length()){largest = current;}
+                current = "";
+            }
+            else if(chRow[i]+1 == chRow[i+1]){
+                current = current + chRow[i];
+            }
+            else {
+                current = current + chRow[i];
+                if (current.length() > largest.length()){largest = current;}
+                current = "";
+            }
+        }
+        return largest;
+    }
+    //[X1Y1 X1Y2 X1Y3]
+    //[X2Y1 X2Y2 X2Y3]
+    //[X3Y1 X3Y2 X3Y3]
+    public static int shortCut(Integer[][] maze){
+        int path = 0; int positionX = 0; int positionY = 0;
+        int finXPos = maze.length-1;
+        int finYPos = maze[finXPos].length-1;
+        int currentCostPath = 0;
+        boolean broken = false;
+        ArrayList<String> currentPaths = new ArrayList<>();
+        String[] possiblePaths = new String[]{""};
+        for (int iteration = 0; iteration < finXPos+finYPos; iteration++) {
+            if (currentPaths.size() <= 2){currentPaths.add("X");currentPaths.add("Y");}
+            else
+                currentPaths.clear();
+            for (int t = 0; t < possiblePaths.length; t++) {
+                currentPaths.add(possiblePaths[t] + "X");
+                currentPaths.add(possiblePaths[t] + "Y");
+            }
+            possiblePaths = currentPaths.toArray(new String[0]);
+        }
+        for (int iteration = 0; iteration < possiblePaths.length ; iteration++) {
+            String[] CurCheck = possiblePaths[iteration].split("");
+            currentCostPath = 0;
+            positionX = 0;
+            positionY = 0;
+            broken = false;
+            for (int i = 0; i < finXPos+finYPos; i++) {
+                currentCostPath += maze[positionX][positionY];
+                if (CurCheck[i].equals("X") && positionX != maze.length-1){positionX++;}
+                else if (CurCheck[i].equals("Y") && positionY != maze[positionX].length-1){positionY++;}
+                else {broken = true;break;}
+            }
+            if(broken)
+                continue;
+            currentCostPath += maze[positionX][positionY];
+            if(path == 0)
+                path = currentCostPath;
+            path = (currentCostPath >= path) ? path : currentCostPath;
+
+        }
+        return path;
+    }
+    public static String numericOrder(String sentence){
+        String[] wordByWord = sentence.split(" ");
+        String[] convert = new String[wordByWord.length];
+        for (int i = 0; i < wordByWord.length; i++) {
+            String num = wordByWord[i].replaceAll("\\D+","");
+            String wrd = wordByWord[i].replaceAll("\\d","");
+            convert[i] = num + wrd;
+        }
+        Arrays.sort(convert);
+        for (int i = 0; i < convert.length; i++) {
+            convert[i] = convert[i].replaceAll("\\d","");
+        }
+        return String.join(" ",convert);
+    }
+    public static int switchToHighest(int x, int y){
+        int max = (x>y)? x:y;
+        int min = (x<y)? x:y;
+        String[] array;
+        array = Integer.toString(min).split("");
+        Arrays.sort(array);
+        for (int i = 0; i < array.length/2; i++) {
+            String temp = array[i];
+            array[i] = array[array.length-i-1];
+            array[array.length-i-1] = temp;
+        }
+        String[] secArray = Integer.toString(max).split(""); int j = 0;
+        for (int i = 0; i < secArray.length-1; i++) {
+            if (Integer.parseInt(secArray[i]) < Integer.parseInt(array[j])){ secArray[i] = array[j]; j++;}
+        }
+        return Integer.parseInt(String.join("",secArray));
     }
 }
