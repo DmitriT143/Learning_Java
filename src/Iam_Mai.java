@@ -6,33 +6,33 @@ import java.util.List;
 public class Iam_Mai {
     public static void main(String[] args) {
         System.out.println("Answers to fourth practise work");
-        System.out.println(nonRepeatable("abracadabra"));
-        System.out.println(nonRepeatable("paparazzi"));
-        System.out.println(generateBrackets(1));
-        System.out.println(generateBrackets(2));
-        System.out.println(generateBrackets(3));
-        System.out.println(binarySystem(2));
-        System.out.println(binarySystem(3));
-        System.out.println(binarySystem(4));
-        System.out.println(alphabeticOrder("abcdjuwx"));
-        System.out.println(alphabeticOrder("klmabzyxw"));
-        System.out.println(duplicateToNum("aaabbcdd"));
-        System.out.println(duplicateToNum("vvvvaajaaaaa"));
-        System.out.println(numberConverter("five hundred sixty seven"));
-        System.out.println(numberConverter("thirty one"));
-        System.out.println(numberConverter("one hundred one"));
-        System.out.println(maxUniqueRow("123412324"));
-        System.out.println(maxUniqueRow("111111"));
-        System.out.println(maxUniqueRow("778978898"));
-        System.out.println(maxUniqueRow("1234115678"));
-        System.out.println(shortCut(new Integer[][]{{1,3,1},{1,5,1},{4,2,1}}));
-        System.out.println(shortCut(new Integer[][]{{2,7,3},{1,4,8},{4,5,9}}));
-        System.out.println(numericOrder("nin3th an1swer tas4k t2o"));
-        System.out.println(numericOrder("t3o the5m 1One all6 r4ule ri2ng"));
-        System.out.println(numericOrder("re6sponsibility Wit1h gr5eat power3 4comes g2reat"));
-        System.out.println(switchToHighest(159,723));
-        System.out.println(switchToHighest(491,3912));
-        System.out.println(switchToHighest(6274,71259));
+        System.out.println("1)"+nonRepeatable("abracadabra"));
+        System.out.println("1)"+nonRepeatable("paparazzi"));
+        System.out.println("2)"+generateBrackets(1));
+        System.out.println("2)"+generateBrackets(2));
+        System.out.println("2)"+generateBrackets(3));
+        System.out.println("3)"+binarySystem(2));
+        System.out.println("3)"+binarySystem(3));
+        System.out.println("3)"+binarySystem(4));
+        System.out.println("4)"+alphabeticOrder("abcdjuwx"));
+        System.out.println("4)"+alphabeticOrder("klmabzyxw"));
+        System.out.println("5)"+duplicateToNum("aaabbcdd"));
+        System.out.println("5)"+duplicateToNum("vvvvaajaaaaa"));
+        System.out.println("6)"+numberConverter("five hundred sixty seven"));
+        System.out.println("6)"+numberConverter("thirty one"));
+        System.out.println("6)"+numberConverter("one hundred one"));
+        System.out.println("7)"+maxUniqueRow("123412324"));
+        System.out.println("7)"+maxUniqueRow("111111"));
+        System.out.println("7)"+maxUniqueRow("778978898"));
+        System.out.println("7)"+maxUniqueRow("1234115678"));
+        System.out.println("8)"+shortCut(new Integer[][]{{1,3,1},{1,5,1},{4,2,1}}));
+        System.out.println("8)"+shortCut(new Integer[][]{{2,7,3},{1,4,8},{4,5,9}}));
+        System.out.println("9)"+numericOrder("nin3th an1swer tas4k t2o"));
+        System.out.println("9)"+numericOrder("t3o the5m 1One all6 r4ule ri2ng"));
+        System.out.println("9)"+numericOrder("re6sponsibility Wit1h gr5eat power3 4comes g2reat"));
+        System.out.println("10)"+switchToHighest(159,723));
+        System.out.println("10)"+switchToHighest(491,3912));
+        System.out.println("10)"+switchToHighest(6274,71259));
     }
 
     public static String nonRepeatable(String s) {
@@ -100,63 +100,66 @@ public class Iam_Mai {
         }
         return String.join(",", binaryPrevious);
     }
-//Todo: Fix this BS with alphabetic order till next mon.
-    public static String alphabeticOrder(String input) {
-        String[] alphabet = "abcdefghijklmnopqrstuvwxyz ".split("");
-        String[] inRow = input.toLowerCase().replace(" ", "").split("");
-        ArrayList<String> currentRow = new ArrayList<String>();
-        String[] biggestRow = new String[]{"a"};
-        for (int i = 0; i < inRow.length; i++) {
-            for (int j = 0; j < alphabet.length; j++) {
-                if (inRow[i].equals(alphabet[j])) {
-                    if (inRow.length >= i + 2 && inRow[i + 1].equals(alphabet[j + 1])) {
-                        currentRow = new ArrayList<String>();
+public static String alphabeticOrder(String input) {
+    String[] alphabet = "abcdefghijklmnopqrstuvwxyz ".split("");
+    String[] inRow = input.toLowerCase().replace(" ", "").split("");
+    ArrayList<String> currentRow = new ArrayList<String>();
+    String[] biggestRow = new String[]{"a"};
+    for (int i = 0; i < inRow.length-1; i++) {
+        for (int j = 0; j < alphabet.length-1; j++) {
+            if (inRow[i].equals(alphabet[j])) {
+                if (inRow.length >= i + 1 && inRow[i + 1].equals(alphabet[j + 1])) {
+                    currentRow = new ArrayList<String>();
+                    currentRow.add(inRow[i]);
+                    while (i+2 <= inRow.length && inRow[i + 1].equals(alphabet[j + 1])) {
+                        i++;
+                        j++;
                         currentRow.add(inRow[i]);
-                        while (i+2 <= inRow.length && inRow[i + 1].equals(alphabet[j + 1])) {
-                            i++;
-                            j++;
-                            currentRow.add(inRow[i]);
-                        }
                     }
-                    else if (inRow.length >= i + 2 && inRow[i + 1].equals(alphabet[j - 1])) {
-                        currentRow = new ArrayList<String>();
-                        currentRow.add(inRow[i]);
-                        while (i+2 <= inRow.length && inRow[i + 1].equals(alphabet[j - 1])) {
-                            currentRow.add(inRow[i]);
-                            i++;
-                            j++;
-                        }
-                    }
-                    if (biggestRow.length <= currentRow.size()){biggestRow = currentRow.toString().split("");}
-                    break;
                 }
+                else if (inRow.length >= i + 1 && inRow[i + 1].equals(alphabet[j - 1])) {
+                    currentRow = new ArrayList<String>();
+                    currentRow.add(inRow[i]);
+                    while (i+2 <= inRow.length && inRow[i + 1].equals(alphabet[j - 1])) {
+                        i++;
+                        j--;
+                        currentRow.add(inRow[i]);
+                    }
+                }
+                String[] local = currentRow.toArray(new String[0]);
+                if (biggestRow.length <= currentRow.size()){biggestRow = local;}
+                break;
             }
-
         }
-        return String.join("", biggestRow);
     }
+    return String.join("", biggestRow);
+}
     public static String duplicateToNum(String origin){
         int mat_len = 1; String output = "";
         String[] splitTed = origin.split("");
         for (int i = 0; i < origin.length()-1; i++) {
             if(!splitTed[i].equals(splitTed[i+1])){mat_len++;}
         }
-        String[][] Symbols_matrix = new String[mat_len][1];
+        String[] Symbols_matrix = new String[mat_len];
         for (int i = 0; i < mat_len; i++) {
-            Symbols_matrix[i][0] = "";
+            Symbols_matrix[i] = "";
         }
         for (int i = 0, j = 0; i < origin.length(); i++)
         {
-            if(i == origin.length()-1){Symbols_matrix[j][0] = Symbols_matrix[j][0] + splitTed[i]; break;}
+            if(i == origin.length()-1){Symbols_matrix[j] = Symbols_matrix[j] + splitTed[i]; break;}
             if (splitTed[i].equals(splitTed[i+1])){
-                Symbols_matrix[j][0] = Symbols_matrix[j][0] + splitTed[i];
-            } else {Symbols_matrix[j][0] = Symbols_matrix[j][0] + splitTed[i];j++;}
+                Symbols_matrix[j] = Symbols_matrix[j] + splitTed[i];
+            } else {Symbols_matrix[j] = Symbols_matrix[j] + splitTed[i];j++;}
         }
         for (int i = 0; i < mat_len; i++){
-            output = output + Symbols_matrix[i][0].split("")[0] + Symbols_matrix[i][0].split("").length;
+            output = output + Symbols_matrix[i].split("").length + Symbols_matrix[i].split("")[0] + ",";
         }
-        origin = Arrays.deepToString(Symbols_matrix);
-    return origin;
+        String[] temp = output.split(","); Arrays.sort(temp);
+        for (int i = 0; i < temp.length; i++) {
+            temp[i] = temp[i].split("")[1] + temp[i].split("")[0];
+        }
+        output = String.join("",temp);
+        return output;
     }
     public static int numberConverter(String input){
         String[] stringNumbers = input.toLowerCase().split(" ");

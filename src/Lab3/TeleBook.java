@@ -23,16 +23,16 @@ public class TeleBook {
         myContacts.setContact(89450513, "Oleg", "Plumber", "None");
         myContacts.setContact(72285413, "Ilia", "Mechanic", "Reliable");
         myContacts.setContact(18002523, "Bill", "Translator", "Expensive");
-        System.out.println(myContacts.findContact(18002523));
-        System.out.println(myContacts.findContact(89450513));
         System.out.println(myContacts.findContact(79192233));
-        System.out.println(myContacts.findContact(72285413));
+        System.out.println(myContacts.findContact(18002523));
         myContacts.removeContact(79192233);
         System.out.println(myContacts.findContact(79192233) + " must be false");
-        myContacts.setContact(18002523, "Bill Jr", "Translator", "Cheap, Son not Dad");
-        System.out.println(myContacts.findContact(18002523));
+        myContacts.setContact(18002525, "Bill Jr", "Translator", "Cheap, Son not Dad");
+        System.out.println(myContacts.findContact(18002525));
         System.out.println(myContacts.findContact(89450513));
-        System.out.println(myContacts.findContact(79192233));
+        System.out.println(myContacts.findContact(7919223));
         System.out.println(myContacts.findContact(72285413));
     }
 }
+// Нужно показать заполненность таблицы, одну заполненую на еденицу позицию и одну заполненную на 3 позицию
+// И вывести с этих позиций всё что на них заполнено
