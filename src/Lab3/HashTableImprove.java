@@ -77,4 +77,20 @@ public class HashTableImprove<K,V> {
         newNode.next = head;
         bucketArray.set(bucketIndex,newNode);
     }
+    public Integer[] Fin(int Checked){
+        ArrayList<Integer> allKeys = new ArrayList<>();
+        Integer[] keysOut;
+        hashPosition<K,V> head = bucketArray.get(Checked);
+        Checked = 0;
+            while (head!= null){
+                allKeys.add((Integer) head.getKey());
+                head = head.next;
+                Checked++;
+        }
+            keysOut = new Integer[Checked];
+        for (int i = 0; i < Checked; i++) {
+            keysOut[i] = allKeys.get(i);
+        }
+        return keysOut;
+    }
 }

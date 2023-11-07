@@ -14,7 +14,9 @@ public class Iam_Mai {
         System.out.println("3)"+binarySystem(2));
         System.out.println("3)"+binarySystem(3));
         System.out.println("3)"+binarySystem(4));
-        System.out.println("4)"+alphabeticOrder("abcdjuwx"));
+        System.out.println("3)"+binarySystem(5));
+        System.out.println("4)"+alphabeticOrder("abcdeacbas"));
+        System.out.println("4)"+alphabeticOrder("ababacbas"));
         System.out.println("4)"+alphabeticOrder("klmabzyxw"));
         System.out.println("5)"+duplicateToNum("aaabbcdd"));
         System.out.println("5)"+duplicateToNum("vvvvaajaaaaa"));
@@ -37,14 +39,11 @@ public class Iam_Mai {
 
     public static String nonRepeatable(String s) {
         int i = s.length();
-        if (i <= 1) {
-            return s;
-        }
+        if (i <= 1) {return s;}
         if (Arrays.stream(s.substring(0, i - 1).split("")).toList().contains(s.substring(i - 1, i))) {
             return nonRepeatable(s.substring(0, i - 1));
         } else return nonRepeatable(s.substring(0, i - 1)) + s.charAt(i - 1);
     }
-//Todo: Rework bracket generator to recursion
     public static String generateBrackets(int len) {
         ArrayList<String> CurrentAttempt;
         String[] PreviousAttempt = new String[]{""};
@@ -98,37 +97,50 @@ public class Iam_Mai {
             }
             binaryPrevious = binaryCurrent.toArray(new String[0]);
         }
+        Arrays.sort(binaryPrevious);
         return String.join(",", binaryPrevious);
     }
+    /**
+    J - once
+     If Goes up && next = alphabet Up
+     repeat
+     If Goes down && next = alphabet down
+     repeat
+     else change
+    */
 public static String alphabeticOrder(String input) {
-    String[] alphabet = "abcdefghijklmnopqrstuvwxyz ".split("");
+    String[] alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
     String[] inRow = input.toLowerCase().replace(" ", "").split("");
-    ArrayList<String> currentRow = new ArrayList<String>();
+    ArrayList<String> currentRow = new ArrayList<>();
     String[] biggestRow = new String[]{"a"};
+    boolean goesUp = true;
     for (int i = 0; i < inRow.length-1; i++) {
-        for (int j = 0; j < alphabet.length-1; j++) {
+        for (int j = 0; j < alphabet.length - 1; j++) {
             if (inRow[i].equals(alphabet[j])) {
-                if (inRow.length >= i + 1 && inRow[i + 1].equals(alphabet[j + 1])) {
-                    currentRow = new ArrayList<String>();
+                if (inRow.length >= i + 1 && inRow[i + 1].equals(alphabet[j + 1]) && goesUp) {
                     currentRow.add(inRow[i]);
-                    while (i+2 <= inRow.length && inRow[i + 1].equals(alphabet[j + 1])) {
-                        i++;
-                        j++;
-                        currentRow.add(inRow[i]);
+                    break;
+                } else if (goesUp){
+                    currentRow.add(inRow[i]);
+                    String[] local = currentRow.toArray(new String[0]);
+                    if (biggestRow.length <= currentRow.size()) {
+                        biggestRow = local;
+                        currentRow = new ArrayList<String>();
                     }
                 }
-                else if (inRow.length >= i + 1 && inRow[i + 1].equals(alphabet[j - 1])) {
-                    currentRow = new ArrayList<String>();
+                if (inRow.length >= i + 1 && inRow[i + 1].equals(alphabet[j - 1])) {
+                    goesUp = false;
                     currentRow.add(inRow[i]);
-                    while (i+2 <= inRow.length && inRow[i + 1].equals(alphabet[j - 1])) {
-                        i++;
-                        j--;
-                        currentRow.add(inRow[i]);
+                    break;
+                } else if (!goesUp){
+                    currentRow.add(inRow[i]);
+                    String[] local = currentRow.toArray(new String[0]);
+                    if (biggestRow.length <= currentRow.size()) {
+                        biggestRow = local;
+                        currentRow = new ArrayList<String>();
                     }
+                    break;
                 }
-                String[] local = currentRow.toArray(new String[0]);
-                if (biggestRow.length <= currentRow.size()){biggestRow = local;}
-                break;
             }
         }
     }
@@ -201,15 +213,10 @@ public static String alphabeticOrder(String input) {
         return finResult;
     }
     public static String maxUniqueRow(String row){
-        char[] chRow = ("" + row).toCharArray();
+        char[] chRow = (row).toCharArray();
         String largest = ""; String current = "";
-        for (int i = 0; i < chRow.length; i++) {
-            if (i == chRow.length-1){
-                current = current + chRow[i];
-                if (current.length() > largest.length()){largest = current;}
-                current = "";
-            }
-            else if(chRow[i]+1 == chRow[i+1]){
+        for (int i = 0; i < chRow.length-1; i++) {
+            if(chRow[i]+1 == chRow[i+1]){
                 current = current + chRow[i];
             }
             else {
@@ -267,13 +274,13 @@ public static String alphabeticOrder(String input) {
         String[] wordByWord = sentence.split(" ");
         String[] convert = new String[wordByWord.length];
         for (int i = 0; i < wordByWord.length; i++) {
-            String num = wordByWord[i].replaceAll("\\D+","");
-            String wrd = wordByWord[i].replaceAll("\\d","");
+            String num = wordByWord[i].replaceAll("[^0-9]","");
+            String wrd = wordByWord[i].replaceAll("[0-9]","");
             convert[i] = num + wrd;
         }
         Arrays.sort(convert);
         for (int i = 0; i < convert.length; i++) {
-            convert[i] = convert[i].replaceAll("\\d","");
+            convert[i] = convert[i].replaceAll("[0-9]","");
         }
         return String.join(" ",convert);
     }
