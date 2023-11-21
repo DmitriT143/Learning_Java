@@ -4,8 +4,8 @@ practice tasks:
 #Done tasks 1-10
 #Done tasks 11-20 (fix needed)
 #Done tasks 21-30 (MEGAlight)
-#ToDo tasks 31-40 (3 weeks 10 tasks)
-#Inkoming tasks 41-50 (3 weeks 10 tasks)
+#Done tasks 31-40 (Done but -point for style)
+#Todo tasks 41-50 (3 weeks 10 tasks)
 #Inkoming tasks 51-60 (3 weeks 10 tasks)
 
 lab tasks
@@ -14,4 +14,9 @@ lab tasks
 # Done: lab1 Palindrome
 # Done: lab2 Household (class -> subclass -> call functions)
 # Done: lab 3
-#ToDo: lab 4
+# Done: lab 4
+# Done: lab 5 defend i guess
+(inputs lab 5:
+"The price of the product is 19.99" - 1" -1st
+"A315asdsgg" "Aldentse" "kk32" "SOYAlemonade" -2nd
+)

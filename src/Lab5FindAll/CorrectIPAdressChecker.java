@@ -1,0 +1,19 @@
+package Lab5FindAll;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class CorrectIPAdressChecker {
+    public static void main(String[] args) {
+        if (args.length<=0)
+            args = new String[]{"192.168.1.1"};
+        for (int i = 0; i < args.length; i++){
+            System.out.println(compiler(args[i]));
+        }
+    }
+    public static boolean compiler(String input){
+        Pattern IPPattern = Pattern.compile("(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)");
+        Matcher IPMatcher = IPPattern.matcher(input);
+        return IPMatcher.find();
+    }
+}
