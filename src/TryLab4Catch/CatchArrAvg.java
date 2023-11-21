@@ -2,9 +2,13 @@ package TryLab4Catch;
 
 public class CatchArrAvg {
     public static void main(String[] args) {
-        args = new String[]{"1","2","3","4","5"};
+        if (args.length == 0){
+        //args = new String[]{"1","2","3","4","5"};
 //        args = new String[]{"1","2","3","no","5"};
+        // Catches out of bound exception
 //        args = new String[]{"1","2","3","5"};
+        //Catches NumberFormatException
+        }
         int sum = 0;
         try{
             for (int i = 0; i < 5; i++) {

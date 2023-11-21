@@ -1,17 +1,18 @@
 package TryLab4Catch;
-
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-
 public class OpenTransferClose {
-
     public static void main(String[] args){
         try {
-            FileReader readBefore = new FileReader("S:\\Misс\\JavaProjects\\Learning_Java_0\\src\\TryLab4Catch\\Hello.txt");
-            Path printAfter = Path.of("S:\\Misс\\JavaProjects\\Learning_Java_0\\src\\TryLab4Catch\\Bye.txt");
+            String curDir = System.getProperty("user.dir");
+            System.out.println(curDir);
+            FileReader readBefore = new FileReader(curDir + "\\Meg.txt");
+//            FileReader readBefore = new FileReader(curDir + "\\Bob.txt");
+            //Force "FileNotFound Error"
+            Path printAfter = Path.of(curDir+"\\Bye.txt");
             int i;
             String wasReadFrom = "";
             while((i = readBefore.read()) != -1){
@@ -21,7 +22,6 @@ public class OpenTransferClose {
             Files.writeString( printAfter,wasReadFrom);
             readBefore.close();
         } catch (FileNotFoundException e){ System.out.println("Wrong Path");return;}
-        catch (RuntimeException e){ System.out.println("Wrong way to copy");return;}
         catch ( IOException e){ System.out.println("How did you do it?");return;}
     }
 }
