@@ -118,7 +118,6 @@ public class BootStrappedMatrix {
         }
         return score;
     }
-    // TODO
     public static Integer[][] upTo8(Integer[] listed){Integer[] temp = new Integer[0];int TopLim = 1;int DownLim = 0;
         ArrayList<Integer[]> toOut = new ArrayList<>();
         while (TopLim < listed.length){
