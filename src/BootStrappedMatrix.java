@@ -23,10 +23,10 @@ public class BootStrappedMatrix {
         System.out.println("4)" + PiratedScrambleCounter(new String[]{"cat", "create", "sat"},"caster"));
         System.out.println("4)" + PiratedScrambleCounter(new String[]{"trance", "recant"}, "recant"));
         System.out.println("4)" + PiratedScrambleCounter(new String[]{"dote", "dotes", "toes", "set", "dot", "dots", "sted"}, "tossed"));
-        System.out.println("5)" + Arrays.deepToString(upTo8(new int[]{1, 2, 3, 4, 5})));
-        System.out.println("5)" + Arrays.deepToString(upTo8(new int[]{1, 2, 3, 7, 9})));
-        System.out.println("5)" + Arrays.deepToString(upTo8(new int[]{10, 9, 7, 2, 8})));
-        System.out.println("5)" + Arrays.deepToString(upTo8(new int[]{1, 6, 5, 4, 8, 2, 3, 7})));
+        System.out.println("5)" + Arrays.deepToString(upTo8(new Integer[]{1, 2, 3, 4, 5})));
+        System.out.println("5)" + Arrays.deepToString(upTo8(new Integer[]{1, 2, 3, 7, 9})));
+        System.out.println("5)" + Arrays.deepToString(upTo8(new Integer[]{10, 9, 7, 2, 8})));
+        System.out.println("5)" + Arrays.deepToString(upTo8(new Integer[]{1, 6, 5, 4, 8, 2, 3, 7})));
         System.out.println("6)" + takeDownBy5(new int[]{95, 83, 90, 87, 88, 93}) );
         System.out.println("6)" + takeDownBy5(new int[]{10}));
         System.out.println("6)" + takeDownBy5(new int[]{53,79}));
@@ -118,23 +118,19 @@ public class BootStrappedMatrix {
         }
         return score;
     }
-    public static int[][] upTo8 (int[] listed){
-        int upperLimit = 1;
-        int lowerLimit = 0;
-        Integer[] Placeholder = new Integer[2];
-        ArrayList<Integer[]> pairs = new ArrayList<>(){};
-        while (listed.length-2>=lowerLimit){
-            if (listed[lowerLimit] + listed[upperLimit] == 8){Placeholder[0] = Math.min(listed[upperLimit],listed[lowerLimit]);Placeholder[1] = Math.max(listed[upperLimit],listed[lowerLimit]);
-                pairs.add(Placeholder);
-            System.out.println(Arrays.toString(Placeholder));}
-            upperLimit++;
-            if (upperLimit==listed.length){lowerLimit++;upperLimit=lowerLimit+1;}
+    // TODO
+    public static Integer[][] upTo8(Integer[] listed){Integer[] temp = new Integer[0];int TopLim = 1;int DownLim = 0;
+        ArrayList<Integer[]> toOut = new ArrayList<>();
+        while (TopLim < listed.length){
+            if(listed[TopLim]+listed[DownLim] == 8){temp= new Integer[]{listed[TopLim], listed[DownLim]};Arrays.sort(temp); toOut.add(temp);}
+            DownLim++;
+            if(DownLim == TopLim){TopLim++;DownLim = 0;}
         }
-        int[][] list = new int[pairs.size()][2];
-        for (int i = 0; i < pairs.size(); i++) {
-            list[i][0] = pairs.get(i)[0]; list[i][1] = pairs.get(i)[1];
+        Integer[][] out = new Integer[toOut.size()][];
+        for (int i = 0; i < toOut.size(); i++) {
+            out[i] = toOut.get(i);
         }
-        return list;
+        return out;
     }
     public static String takeDownBy5(int[] grades){
         int myGrade;
