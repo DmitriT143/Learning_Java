@@ -121,12 +121,16 @@ public class BootStrappedMatrix {
     public static Integer[][] upTo8(Integer[] listed){Integer[] temp = new Integer[0];int TopLim = 1;int DownLim = 0;
         ArrayList<Integer[]> toOut = new ArrayList<>();
         while (TopLim < listed.length){
-            if(listed[TopLim]+listed[DownLim] == 8){temp= new Integer[]{listed[TopLim], listed[DownLim]};Arrays.sort(temp); toOut.add(temp);}
+            if(listed[TopLim]+listed[DownLim] == 8) {
+                temp= new Integer[]{listed[TopLim], listed[DownLim]};Arrays.sort(temp); toOut.add(temp);
+            }
             DownLim++;
-            if(DownLim == TopLim){TopLim++;DownLim = 0;}
+            if(DownLim == TopLim){
+                TopLim++;DownLim = 0;
+            }
         }
         Integer[][] out = new Integer[toOut.size()][];
-        for (int i = 0; i < toOut.size(); i++) {
+        for (int i = 0; i < toOut.size(); i++){
             out[i] = toOut.get(i);
         }
         return out;
@@ -152,7 +156,8 @@ public class BootStrappedMatrix {
         }
         MustBeMoved = String.join("",Placeholder);
         System.out.println(text);
-        for (int i = 0; i < MustBeMoved.length(); i++) {char newChar; char oldChar = MustBeMoved.charAt(i);
+        for (int i = 0; i < MustBeMoved.length(); i++){
+            char newChar; char oldChar = MustBeMoved.charAt(i);
             if (oldChar + movedBy > 90){newChar = (char)(oldChar+movedBy+6);}
             else if(oldChar + movedBy < 65){newChar = (char)(oldChar+movedBy+58);}
             else {newChar = (char)(oldChar + movedBy);}
@@ -191,16 +196,33 @@ public class BootStrappedMatrix {
         try {
         } catch (NumberFormatException e){return "Error encountered in Month";}
         Double time = Double.parseDouble(DatInfo[3].replace(":",".")) - timeCity.get(cityA) + timeCity.get(cityB);
-        if (time > 24.00){time = time - 24.00; DatInfo[1]=String.valueOf(Integer.parseInt(DatInfo[1])+1);}
-        else if (time < 00.00){time = time + 24.00; DatInfo[1]=String.valueOf(Integer.parseInt(DatInfo[1])-1);}
+        if (time > 24.00)
+        {
+            time = time - 24.00; DatInfo[1]=String.valueOf(Integer.parseInt(DatInfo[1])+1);
+        }
+        else if (time < 00.00) {
+            time = time + 24.00; DatInfo[1]=String.valueOf(Integer.parseInt(DatInfo[1])-1);
+        }
         Month referenceMonth = java.time.Month.of(Integer.parseInt(DatInfo[0]));
-        YearMonth yearMonth = YearMonth.of(Integer.parseInt(DatInfo[2]),referenceMonth); int minMonthLenght = yearMonth.lengthOfMonth();
-        if (Integer.parseInt(DatInfo[1]) > minMonthLenght){DatInfo[1] = String.valueOf(Integer.parseInt(DatInfo[1]) - minMonthLenght); DatInfo[0] = String.valueOf(Integer.parseInt(DatInfo[0])+1);}
-        if (Integer.parseInt(DatInfo[1]) <= 0){DatInfo[1] = String.valueOf(Integer.parseInt(DatInfo[1])-1);
-        referenceMonth = java.time.Month.of(Integer.parseInt(DatInfo[1])); yearMonth = YearMonth.of(Integer.parseInt(DatInfo[2]),referenceMonth);
-        minMonthLenght = yearMonth.lengthOfMonth(); DatInfo[1] = String.valueOf(minMonthLenght);}
-        if(Integer.parseInt(DatInfo[0])>12){ DatInfo[0]="1"; DatInfo[2] = String.valueOf(Integer.parseInt(DatInfo[2])+1);}
-        if(Integer.parseInt(DatInfo[0])<0){ DatInfo[0]="11"; DatInfo[2] = String.valueOf(Integer.parseInt(DatInfo[2])-1);}
+        YearMonth yearMonth = YearMonth.of(Integer.parseInt(DatInfo[2]),referenceMonth);
+        int minMonthLenght = yearMonth.lengthOfMonth();
+        if (Integer.parseInt(DatInfo[1]) > minMonthLenght){
+            DatInfo[1] = String.valueOf(Integer.parseInt(DatInfo[1]) - minMonthLenght);
+            DatInfo[0] = String.valueOf(Integer.parseInt(DatInfo[0])+1);
+        }
+        if (Integer.parseInt(DatInfo[1]) <= 0){
+            DatInfo[1] = String.valueOf(Integer.parseInt(DatInfo[1])-1);
+        referenceMonth = java.time.Month.of(Integer.parseInt(DatInfo[1]));
+        yearMonth = YearMonth.of(Integer.parseInt(DatInfo[2]),referenceMonth);
+        minMonthLenght = yearMonth.lengthOfMonth();
+        DatInfo[1] = String.valueOf(minMonthLenght);
+        }
+        if(Integer.parseInt(DatInfo[0])>12){
+            DatInfo[0]="1"; DatInfo[2] = String.valueOf(Integer.parseInt(DatInfo[2])+1);
+        }
+        if(Integer.parseInt(DatInfo[0])<0){
+            DatInfo[0]="11"; DatInfo[2] = String.valueOf(Integer.parseInt(DatInfo[2])-1);
+        }
         DatInfo[0] = String.valueOf(Integer.parseInt(DatInfo[0]));
         return DatInfo[2]+"-"+DatInfo[0]+"-"+DatInfo[1]+" "+ String.format("%.2f", time).replace(",",":");
     }
@@ -209,7 +231,8 @@ public class BootStrappedMatrix {
         Integer[] unChanged = new Integer[Placeholder.length]; ArrayList<Integer> Egor = new ArrayList<>();
         for (int i = 0; i < Placeholder.length; i++){
             unChanged[i] = Integer.parseInt(Placeholder[i]);
-            if (Integer.parseInt(Placeholder[i])==0){ZeroCounter++;} else Egor.add(Integer.parseInt(Placeholder[i]));
+            if (Integer.parseInt(Placeholder[i])==0){ZeroCounter++;}
+            else Egor.add(Integer.parseInt(Placeholder[i]));
         }Collections.sort(Egor);
         while (ZeroCounter!=0){ZeroCounter--;Egor.add(1,0);}
         Integer[] glued = Egor.toArray(new Integer[0]);

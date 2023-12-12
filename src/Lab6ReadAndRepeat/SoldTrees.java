@@ -13,6 +13,7 @@ public class SoldTrees {
         priceTag.add(50);
         inOut.put("Oak",42);
         priceTag.add(75);
+        addToSales("Bonsai",5);
         MostSold(inOut);
         PrintAllPos(inOut);
     }
@@ -28,6 +29,7 @@ public class SoldTrees {
                 } else return -1;
             }
         });
+        System.out.println("Most sold :: " + allPos.get(allPos.size()-1).getKey());
     }
     public static void PrintAllPos(Map<String,Integer> map){
         List<Object> allKeys = List.of(map.keySet().toArray());
@@ -36,8 +38,17 @@ public class SoldTrees {
             System.out.println(allKey.toString() + " :: "+ map.get(allKey));
         }
         for (int i = 0; i < allKeys.size()-1 && i < priceTag.size() - 1; i++) {
-            price = price + (map.get(allKeys.get(i)) * priceTag.get(i));
+            Integer pricePerItem;
+            if(priceTag.get(i)!=null) {
+                price = price + (map.get(allKeys.get(i)) * priceTag.get(i));
+            }else {
+                price = price + map.get(allKeys.get(i)) * 10;
+            }
         }
         System.out.println("Price of sold objects :: " + price);
+    }
+    public static void addToSales(String Tree, Integer Amount){
+        if(inOut.get(Tree) != null){inOut.put(Tree,(inOut.get(Tree)+Amount));}
+        else inOut.put(Tree,Amount);
     }
 }
