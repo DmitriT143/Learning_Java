@@ -11,34 +11,45 @@ public class BootStrappedMatrix {
         System.out.println("1)" + SamePattern("EDCBA", "IHGFE"));
         System.out.println("1)" + SamePattern("FFGG", "CDCD"));
         System.out.println("1)" + SamePattern("FFFF", "ABCD"));
+        System.out.println();
         System.out.println("2)" + SpiderPath("H3", "E2"));
         System.out.println("2)" + SpiderPath("A4", "B2"));
+        System.out.println("2)" + SpiderPath("B4", "H2"));
+        System.out.println("2)" + SpiderPath("C4", "H2"));
         System.out.println("2)" + SpiderPath("A2", "C4"));
+        System.out.println();
         System.out.println("3)" + recursiveNumLength("4666"));
         System.out.println("3)" + recursiveNumLength("544"));
         System.out.println("3)" + recursiveNumLength("121317"));
         System.out.println("3)" + recursiveNumLength("0"));
         System.out.println("3)" + recursiveNumLength("12345"));
         System.out.println("3)" + recursiveNumLength("1289396387328L"));
+        System.out.println();
         System.out.println("4)" + PiratedScrambleCounter(new String[]{"cat", "create", "sat"},"caster"));
         System.out.println("4)" + PiratedScrambleCounter(new String[]{"trance", "recant"}, "recant"));
         System.out.println("4)" + PiratedScrambleCounter(new String[]{"dote", "dotes", "toes", "set", "dot", "dots", "sted"}, "tossed"));
+        System.out.println();
         System.out.println("5)" + Arrays.deepToString(upTo8(new Integer[]{1, 2, 3, 4, 5})));
         System.out.println("5)" + Arrays.deepToString(upTo8(new Integer[]{1, 2, 3, 7, 9})));
         System.out.println("5)" + Arrays.deepToString(upTo8(new Integer[]{10, 9, 7, 2, 8})));
         System.out.println("5)" + Arrays.deepToString(upTo8(new Integer[]{1, 6, 5, 4, 8, 2, 3, 7})));
+        System.out.println();
         System.out.println("6)" + takeDownBy5(new int[]{95, 83, 90, 87, 88, 93}) );
         System.out.println("6)" + takeDownBy5(new int[]{10}));
         System.out.println("6)" + takeDownBy5(new int[]{53,79}));
-        System.out.println("7)" + Ceasar("hello world Zombie",true,3));
-        System.out.println("7)" + Ceasar("KHOOR ZRUOG CRPELH",false,3));
+        System.out.println();
+        System.out.println("7)" + Ceasar("hello world",true,3));
+        System.out.println("7)" + Ceasar("KHOOR ZRUOG",false,3));
         System.out.println("7)" + Ceasar("almost last task!",true,4));
         System.out.println("7)" + Ceasar("EPQSWX PEWX XEWO",false,4));
+        System.out.println();
         System.out.println("8)" + placementWithoutRepeat(5, 3));
         System.out.println("8)" + placementWithoutRepeat(7, 3));
+        System.out.println();
         System.out.println("9)" + dateCityToCity("Los Angeles","April 1 2011, 23:23","Canberra") );
         System.out.println("9)" + dateCityToCity("London","July 31, 1983 23:01","Rome") );
         System.out.println("9)" + dateCityToCity("New York","December 31, 1970, 13:40","Beijing") );
+        System.out.println();
         System.out.println("10)" + isSmallest(3));
         System.out.println("10)" + isSmallest(30));
         System.out.println("10)" + isSmallest(321));
@@ -51,7 +62,7 @@ public class BootStrappedMatrix {
     public static boolean SamePattern(String Pattern, String CheckOn){
         String[] PatternSplit = Pattern.split("");
         String[] PatternCopySplit = CheckOn.split("");
-        for (int i = 0; i < Pattern.length()-2; i++){
+        for (int i = 0; i < Pattern.length()-1; i++){
             if ((int)CheckOn.charAt(i) - (int)CheckOn.charAt(i+1) != (int)Pattern.charAt(i)-(int)Pattern.charAt(i+1))
             {return false;};
         }
@@ -67,24 +78,34 @@ public class BootStrappedMatrix {
         String[] CurrentPos = SpiderPos.split("");
         String Path = SpiderPos;
         while (!CurrentPos[0].equals(CurFlyPos[0]) || !CurrentPos[1].equals(CurFlyPos[1])){
-            if (CurrentPos[1].equals("0") && CurrentPos[0] != CurFlyPos[0]){CurrentPos[0] = CurFlyPos[0];}
-            if ( (int) CurrentPos[0].charAt(0) - (int) CurFlyPos[0].charAt(0) > 2){ CurrentPos[1] =String.valueOf(Integer.parseInt(CurrentPos[1])-1);
-            } else if ( (int) CurrentPos[0].charAt(0) == (int) FlyPos.charAt(0)){
+            if (CurrentPos[1].equals("0") && !CurrentPos[0].equals(CurFlyPos[0])){CurrentPos[0] = CurFlyPos[0];}
+            if ((int) CurrentPos[0].charAt(0) - (int) CurFlyPos[0].charAt(0) < - 5){System.out.println("Go Fish");
+                if (Integer.parseInt(CurrentPos[1]) == Integer.parseInt(CurFlyPos[1])){
+                    if (CurrentPos[0].charAt(0) == 'A'){CurrentPos[0] = "H";}
+                    else if (CurrentPos[0].charAt(0) == 'B'){CurrentPos[0] = "A";}
+                }
+                else if(CurrentPos[1].charAt(0) > FlyPos.charAt(1)){CurrentPos[1] = String.valueOf(Integer.parseInt(CurrentPos[1])-1);}
+                else {CurrentPos[1] = String.valueOf(Integer.parseInt(CurrentPos[1])+1);}
+            }
+            else if ( (int) CurrentPos[0].charAt(0) - (int) CurFlyPos[0].charAt(0) > 2 || (int) CurrentPos[0].charAt(0) - (int) CurFlyPos[0].charAt(0) <= - 3){ CurrentPos[1] =String.valueOf(Integer.parseInt(CurrentPos[1])-1);
+            }
+            else if ( (int) CurrentPos[0].charAt(0) == (int) FlyPos.charAt(0)){
                 if (Integer.parseInt(CurrentPos[1]) > Integer.parseInt(CurFlyPos[1])){CurrentPos[1] = String.valueOf(Integer.parseInt(CurrentPos[1])-1);}
                 else if (Integer.parseInt(CurrentPos[1]) < Integer.parseInt(CurFlyPos[1])){CurrentPos[1] = String.valueOf(Integer.parseInt(CurrentPos[1])+1);}
-            } else if( (int) CurrentPos[0].charAt(0) - (int) CurFlyPos[0].charAt(0) < 2){
+            }
+            else if( (int) CurrentPos[0].charAt(0) - (int) CurFlyPos[0].charAt(0) < 2 && (int) CurrentPos[0].charAt(0) - (int) CurFlyPos[0].charAt(0) > - 3 ){
                 if ((int)CurrentPos[1].charAt(0) == (int) FlyPos.charAt(1)){
                     if (CurrentPos[0].charAt(0)>FlyPos.charAt(0)){CurrentPos[0] = Character.toString((CurrentPos[0].charAt(0)-1));}
                     if (CurrentPos[0].charAt(0)<FlyPos.charAt(0)){CurrentPos[0] = Character.toString((CurrentPos[0].charAt(0)+1));}
                 }
-                    else {
-                        if(CurrentPos[1].charAt(0) > FlyPos.charAt(1)){CurrentPos[1] = String.valueOf(Integer.parseInt(CurrentPos[1])-1);}
-                        else{CurrentPos[0] = Character.toString((CurrentPos[0].charAt(0)+1));}
+                else {
+                    if(CurrentPos[1].charAt(0) > FlyPos.charAt(1)){CurrentPos[1] = String.valueOf(Integer.parseInt(CurrentPos[1])-1);}
+                    else{CurrentPos[0] = Character.toString((CurrentPos[0].charAt(0)+1));}
                 }
             }
             Path = Path+","+String.join("",CurrentPos);
             i++;
-            if (i==6){break;}
+            if (i==16){break;}
         }
         return Path;
     }
@@ -103,10 +124,15 @@ public class BootStrappedMatrix {
     //Than translate each word to points like word.len - 3 + bonuses beforehand
     public static int PiratedScrambleCounter(String[] guessed, String word){
         int score = 0;
-        String[] forAnagram = word.split(""); Arrays.sort(forAnagram);
+        boolean isGuessed = false;
+        for (int i = 0; i < guessed.length; i++) {
+            if(word.contains(guessed[i])){ isGuessed = true;}
+        }
+        String[] forAnagram = word.split("");
+        Arrays.sort(forAnagram);
         for (int i = 0; i < guessed.length; i++) {
             String[] wordle = guessed[i].split(""); Arrays.sort(wordle);
-            if (Arrays.equals(wordle, forAnagram)){score=score+50+guessed[i].length()-2;}
+            if (Arrays.equals(wordle, forAnagram) && isGuessed){score=score+50+guessed[i].length()-2;}
             else{ boolean right = true;
                 String check = word;
                 for (int j = 0; j < guessed[i].length(); j++){
@@ -156,8 +182,7 @@ public class BootStrappedMatrix {
         }
         MustBeMoved = String.join("",Placeholder);
         System.out.println(text);
-        for (int i = 0; i < MustBeMoved.length(); i++){
-            char newChar; char oldChar = MustBeMoved.charAt(i);
+        for (int i = 0; i < MustBeMoved.length(); i++) {char newChar; char oldChar = MustBeMoved.charAt(i);
             if (oldChar + movedBy > 90){newChar = (char)(oldChar+movedBy+6);}
             else if(oldChar + movedBy < 65){newChar = (char)(oldChar+movedBy+58);}
             else {newChar = (char)(oldChar + movedBy);}
@@ -191,38 +216,30 @@ public class BootStrappedMatrix {
         timeCity.put("Canberra",+10.00);
         String[] DatInfo = date.replace(",","").split(" "); // 0 - M 1 - DD 2 - YYYY 3-Time (H - M)
         for (int i = 0; i < Month.length; i++) {
-            if (DatInfo[0].equals(Month[i])){DatInfo[0] = String.valueOf(i+1);}
+            if (DatInfo[0].equals(Month[i])){
+                DatInfo[0] = String.valueOf(i+1);}
         }
-        try {
-        } catch (NumberFormatException e){return "Error encountered in Month";}
         Double time = Double.parseDouble(DatInfo[3].replace(":",".")) - timeCity.get(cityA) + timeCity.get(cityB);
-        if (time > 24.00)
-        {
-            time = time - 24.00; DatInfo[1]=String.valueOf(Integer.parseInt(DatInfo[1])+1);
-        }
-        else if (time < 00.00) {
-            time = time + 24.00; DatInfo[1]=String.valueOf(Integer.parseInt(DatInfo[1])-1);
-        }
+        if (time > 24.00){
+            time = time - 24.00; DatInfo[1]=String.valueOf(Integer.parseInt(DatInfo[1])+1);}
+        else if (time < 00.00){
+            time = time + 24.00; DatInfo[1]=String.valueOf(Integer.parseInt(DatInfo[1])-1);}
         Month referenceMonth = java.time.Month.of(Integer.parseInt(DatInfo[0]));
-        YearMonth yearMonth = YearMonth.of(Integer.parseInt(DatInfo[2]),referenceMonth);
-        int minMonthLenght = yearMonth.lengthOfMonth();
-        if (Integer.parseInt(DatInfo[1]) > minMonthLenght){
-            DatInfo[1] = String.valueOf(Integer.parseInt(DatInfo[1]) - minMonthLenght);
-            DatInfo[0] = String.valueOf(Integer.parseInt(DatInfo[0])+1);
-        }
-        if (Integer.parseInt(DatInfo[1]) <= 0){
+        YearMonth yearMonth = YearMonth.of(Integer.parseInt(DatInfo[2]),referenceMonth); int minMonthLenght = yearMonth.lengthOfMonth();
+        if (Integer.parseInt(DatInfo[1]) > minMonthLenght) {
+            DatInfo[1] = String.valueOf(Integer.parseInt(DatInfo[1]) - minMonthLenght); DatInfo[0] = String.valueOf(Integer.parseInt(DatInfo[0])+1);}
+        if (Integer.parseInt(DatInfo[1]) <= 0)
+        {
             DatInfo[1] = String.valueOf(Integer.parseInt(DatInfo[1])-1);
-        referenceMonth = java.time.Month.of(Integer.parseInt(DatInfo[1]));
-        yearMonth = YearMonth.of(Integer.parseInt(DatInfo[2]),referenceMonth);
-        minMonthLenght = yearMonth.lengthOfMonth();
-        DatInfo[1] = String.valueOf(minMonthLenght);
+            referenceMonth = java.time.Month.of(Integer.parseInt(DatInfo[1]));
+            yearMonth = YearMonth.of(Integer.parseInt(DatInfo[2]),referenceMonth);
+            minMonthLenght = yearMonth.lengthOfMonth();
+            DatInfo[1] = String.valueOf(minMonthLenght);
         }
         if(Integer.parseInt(DatInfo[0])>12){
-            DatInfo[0]="1"; DatInfo[2] = String.valueOf(Integer.parseInt(DatInfo[2])+1);
-        }
+            DatInfo[0]="1"; DatInfo[2] = String.valueOf(Integer.parseInt(DatInfo[2])+1);}
         if(Integer.parseInt(DatInfo[0])<0){
-            DatInfo[0]="11"; DatInfo[2] = String.valueOf(Integer.parseInt(DatInfo[2])-1);
-        }
+            DatInfo[0]="11"; DatInfo[2] = String.valueOf(Integer.parseInt(DatInfo[2])-1);}
         DatInfo[0] = String.valueOf(Integer.parseInt(DatInfo[0]));
         return DatInfo[2]+"-"+DatInfo[0]+"-"+DatInfo[1]+" "+ String.format("%.2f", time).replace(",",":");
     }
@@ -231,8 +248,7 @@ public class BootStrappedMatrix {
         Integer[] unChanged = new Integer[Placeholder.length]; ArrayList<Integer> Egor = new ArrayList<>();
         for (int i = 0; i < Placeholder.length; i++){
             unChanged[i] = Integer.parseInt(Placeholder[i]);
-            if (Integer.parseInt(Placeholder[i])==0){ZeroCounter++;}
-            else Egor.add(Integer.parseInt(Placeholder[i]));
+            if (Integer.parseInt(Placeholder[i])==0){ZeroCounter++;} else Egor.add(Integer.parseInt(Placeholder[i]));
         }Collections.sort(Egor);
         while (ZeroCounter!=0){ZeroCounter--;Egor.add(1,0);}
         Integer[] glued = Egor.toArray(new Integer[0]);
